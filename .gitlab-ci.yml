@@ -1,0 +1,14 @@
+image: ruby:3.1.2
+
+before_script:
+  - bundle install
+
+stages:
+  - lint
+
+rubocop_job:
+  stage: lint
+  only:
+    - merge_requests
+  script:
+    - bundle exec rubocop

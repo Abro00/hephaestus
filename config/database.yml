@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV.fetch("POSTGRES_USER") { "nikita" } %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") { "qwerty" } %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: gefest_development
+
+  
+test:
+  <<: *default
+  database: gefest_test
+
+
+production:
+  <<: *default
+  database: gefest_production
+  username: gefest
+  password: <%= ENV["GEFEST_DATABASE_PASSWORD"] %>
