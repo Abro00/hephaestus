@@ -5,6 +5,7 @@ ruby '3.1.2'
 
 gem 'rubocop', require: false
 gem 'slim-rails'
+gem 'telegram-bot'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.3'
