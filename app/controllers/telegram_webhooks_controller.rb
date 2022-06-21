@@ -1,7 +1,30 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
-  def new!(*)
+  def new!(*) # TODO: отклик на команду по упоминанию бота в группе
     header, body = parse_header_and_body(payload['text'])
-    response = "Created new Jira task with\n\nheader: #{header}\n\nbody: #{body}"
+
+    options = {
+      username:     Rails.application.credentials.dig(:jira, :username),
+      password:     Rails.application.credentials.dig(:jira, :api_token),
+      site:         Rails.application.credentials.dig(:jira, :site),
+      context_path: '',
+      auth_type:    :basic
+    }
+    client = JIRA::Client.new(options)
+    project = client.Project.find('GEGE')
+
+    issue = client.Issue.build
+    issue.save(
+      {
+        'fields' => {
+          'summary'     => header,
+          'project'     => { 'key' => 'GEGE' },
+          'description' => body,
+          'issuetype'   => { 'name' => 'Task' }
+        }
+      }
+    )
+
+    response = "Создана задача с номером #{issue.key}"
     reply_with :message, text: response
   end
 
