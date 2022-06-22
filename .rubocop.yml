@@ -49,9 +49,16 @@ Layout/LineLength:
 Naming/VariableNumber:
   EnforcedStyle: snake_case
 
+Metrics/AbcSize:
+  IgnoredMethods:
+    - message
+
 Metrics/BlockLength:
   IgnoredMethods:
     - describe
+
+Metrics/MethodLength:
+  Max: 20
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact

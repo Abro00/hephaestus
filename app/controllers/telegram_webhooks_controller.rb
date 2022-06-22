@@ -1,25 +1,24 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
-  
   def message(message)
-    if message['text'].start_with?("@#{Telegram.bot.username}")
-      summary, description = parse_summary_and_description(message['text'])
+    return unless message['text'].start_with?("@#{Telegram.bot.username}")
 
-      options = {
-        username:     Rails.application.credentials.dig(:jira, :username),
-        password:     Rails.application.credentials.dig(:jira, :api_token),
-        site:         Rails.application.credentials.dig(:jira, :site),
-        context_path: '',
-        auth_type:    :basic
-      }
-      client = JIRA::Client.new(options)
+    summary, description = parse_summary_and_description(message['text'])
 
-      issue, saved = save_issue(client, message, summary, description)
-      if saved
-        response = "Создана задача с номером [#{issue.key}](#{client.request_client.options[:site]}browse/#{issue.key})"
-        reply_with :message, text: response, parse_mode: 'Markdown'
-      else
-        reply_with :message, text: 'Не удалось создать задачу'
-      end
+    options = {
+      username:     Rails.application.credentials.dig(:jira, :username),
+      password:     Rails.application.credentials.dig(:jira, :api_token),
+      site:         Rails.application.credentials.dig(:jira, :site),
+      context_path: '',
+      auth_type:    :basic
+    }
+    client = JIRA::Client.new(options)
+
+    issue, saved = save_issue(client, message, summary, description)
+    if saved
+      response = "Создана задача с номером [#{issue.key}](#{client.request_client.options[:site]}browse/#{issue.key})"
+      reply_with :message, text: response, parse_mode: 'Markdown'
+    else
+      reply_with :message, text: 'Не удалось создать задачу'
     end
   end
 
@@ -37,7 +36,8 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def save_issue(client, message, summary, description)
     issue = client.Issue.build
-    description<<"\n\nСоздано @#{message['from']['username']} в \"#{message['chat']['title']}\", [#{Time.at(message['date']).strftime("%R %d.%m.%y")}]"
+    description << ("\n\nСоздано @#{message['from']['username']} в \"#{message['chat']['title']}\"" \
+      ", [#{Time.at(message['date']).strftime('%R %d.%m.%y')}]")
     [issue, issue.save(
       {
         'fields' => {
