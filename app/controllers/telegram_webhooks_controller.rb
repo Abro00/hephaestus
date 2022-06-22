@@ -1,5 +1,7 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
-  def new!(*) # TODO: отклик на команду по упоминанию бота в группе
+  
+  # TODO: отклик на команду по упоминанию бота в группе
+  def new!(*)
     header, body = parse_header_and_body(payload['text'])
 
     options = {
@@ -10,7 +12,6 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       auth_type:    :basic
     }
     client = JIRA::Client.new(options)
-    project = client.Project.find('GEGE')
 
     issue = client.Issue.build
     issue.save(
@@ -24,8 +25,8 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       }
     )
 
-    response = "Создана задача с номером #{issue.key}"
-    reply_with :message, text: response
+    response = "Создана задача с номером [#{issue.key}](#{client.request_client.options[:site]}browse/#{issue.key})"
+    reply_with :message, text: response, parse_mode: "Markdown"
   end
 
   def start!(*)
