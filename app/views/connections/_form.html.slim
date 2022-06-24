@@ -1,0 +1,32 @@
+= form_with(model: @connection, url: user_connections_path(@user)) do |f|
+  .field
+    = f.label :tg_token, 'tg bot token'
+    br
+    = f.text_field :tg_token, autofocus: true
+  
+  .field
+    = f.label :chat_id, 'group chat id'
+    br
+    = f.text_field :chat_id
+  
+  .field
+    = f.label :project_key, 'jira project key'
+    br
+    = f.text_field :project_key
+
+  .field
+    = f.label :site, 'jira address'
+    br
+    = f.text_field :site
+  
+  .field
+    = f.label :email, 'jira prfile email'
+    br
+    = f.email_field :email
+  
+  .field
+    = f.label :api_token, 'jira profile api token'
+    br
+    = f.text_field :api_token
+
+  = f.submit 'new connection'

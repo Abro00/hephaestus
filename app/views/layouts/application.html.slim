@@ -9,4 +9,13 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   body
+    - if user_signed_in?
+      span
+        | logged: #{current_user.email}
+      = button_to 'Logout', destroy_user_session_path, method: :delete
+    - else
+      div style='display:flex;'
+        = button_to 'Login', new_user_session_path, method: :get
+        = button_to 'Register', new_user_registration_path, method: :get
+
     = yield
