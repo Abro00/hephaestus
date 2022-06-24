@@ -1,5 +1,14 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
+  def my_chat_member(my_chat_member)
+    if my_chat_member['new_chat_member']['status'] == 'member'
+      respond_with :message, text: 'Вечер в хату работяги'
+      Chat.create(id: my_chat_member['chat']['id'], title: my_chat_member['chat']['title'])
+    end
+    Chat.find(my_chat_member['chat']['id']).destroy if my_chat_member['new_chat_member']['status'] == 'left'
+  end
+
   def message(message)
+    return if message['text'].nil?
     return unless message['text'].start_with?("@#{Telegram.bot.username}")
 
     summary, description = parse_summary_and_description(message['text'])
