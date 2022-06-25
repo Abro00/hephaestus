@@ -1,5 +1,5 @@
 h2
-  | Resend unlock instructions
+  = t('.resend')
 = form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
   = render "devise/shared/error_messages", resource: resource
   .field
@@ -7,5 +7,5 @@ h2
     br
     = f.email_field :email, autofocus: true, autocomplete: "email"
   .actions
-    = f.submit "Resend unlock instructions"
+    = f.submit t('.resend')
 = render "devise/shared/links"

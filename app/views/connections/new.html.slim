@@ -1,6 +1,6 @@
 br
-= link_to 'back', user_path(@user)
+= link_to t('.back'), user_path(@user)
 h2
-  | new connection 
+  = t('.connection') 
 
 = render 'form', user: @user

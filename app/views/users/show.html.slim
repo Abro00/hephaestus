@@ -1,8 +1,8 @@
 h3
   = @user.email
 
-= button_to 'new connection', new_user_connection_path(@user), method: :get
+= button_to t('.new_connection'), new_user_connection_path(@user), method: :get
 
 h3
-  | Connections:
+  = t('.connections')
 = render @user.connections

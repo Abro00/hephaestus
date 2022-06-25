@@ -1,33 +1,96 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  time:
+    formats:
+      custom: "%R %d.%m.%Y"
+  layouts:
+    application:
+      logout: "Logout"
+      login: "Login"
+      sign_up: "Sign up"
+  connections:
+    connection:
+      telegram: "TG chat"
+      jira: "JIRA project"
+    form:
+      tg_token: "Telegram bot token"
+      tg_group: "Telegram group chat"
+      jira_project: "JIRA project key"
+      jira_site: "JIRA address"
+      jira_email: "JIRA email"
+      jira_token: "JIRA API token"
+      connect: "New connection"
+    new:
+      back: "Back"
+      connection: "New connection"
+  devise:
+    confirmations:
+      new:
+        resend: "Resend confirmation instructions"
+    mailer:
+      confirmation_instructions:
+        welcome: "Welcome"
+        confirmation: "You can confirm your account email through the link below:"
+        confirm_link: "Confirm my account"
+      email_changed:
+        hello: "Hello"
+        is_being_changed: "We're contacting you to notify you that your email is being changed to"
+        has_been_changed: "We're contacting you to notify you that your email has been changed to"
+      password_change:
+        hello: Hello
+        has_been_changed: "We're contacting you to notify you that your password has been changed."
+      reset_password_instructions:
+        hello: "Hello"
+        change_request: "Someone has requested a link to change your password. You can do this through the link below."
+        change_link: "Change my password"
+        ignore: "If you didn't request this, please ignore this email."
+        wont_change: "Your password won't change until you access the link above and create a new one."
+      unlock_instructions:
+        hello: "Hello"
+        acc_locked: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
+        click_the_link: "Click the link below to unlock your account"
+        unlock_link: "Unlock my account"
+    password:
+      new:
+        forgot: "Forgot your password?"
+        send: "Send me reset password instructions"
+      edit:
+        change: "Change your password"
+        new_pass: "New password"
+        conf_pass: "Confirm new password"
+        pass_btn: "Change my password"
+    registrations:
+      new:
+        password: "Password"
+        chars: " characters minimum"
+        confirm_password: "Confirm password"
+        signup: "Sign up"
+      edit:
+        title: "Edit"
+        confirmation: "Currently waiting confirmation for: "
+        leave_blank: "(leave blank if you don't want to change it)"
+        current_pass: "(we need your current password to confirm your changes)"
+        update_btn: "Update"
+        cancel: "Cancel my account"
+        unhappy: "Unhappy? "
+        back: "Back"
+    sessions:
+      new:
+        login: "Log in"
+        password: "Password"
+        remember: "Remember me"
+    shared:
+      links:
+        login: "Log in"
+        signup: "Sign up"
+        pass: "Forgot your password?"
+        confirm: "Didn't receive confirmation instructions?"
+        unlock: "Didn't receive unlock instructions?"
+        signup_with: "Sign in with"
+    unlocks:
+      new:
+        resend: "Resend unlock instructions"
+  users:
+    index:
+    show:
+      new_connection: "New connection"
+      connections: "Connections:"

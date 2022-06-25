@@ -1,0 +1,96 @@
+ru:
+  time:
+    formats:
+      custom: "%R %d.%m.%Y"
+  layouts:
+    application:
+      logout: "Выход"
+      login: "Вход"
+      sign_up: "Регистрация"
+  connections:
+    connection:
+      telegram: "Имя чата"
+      jira: "Проект"
+    form:
+      tg_token: "Токен телеграм бота"
+      tg_group: "Чат проекта"
+      jira_project: "Ключ проекта JIRA"
+      jira_site: "Домен JIRA"
+      jira_email: "email бота в JIRA"
+      jira_token: "JIRA API токен"
+      connect: "Подключение"
+    new:
+      back: "Назад"
+      connection: "Новая связь"
+  devise:
+    confirmations:
+      new:
+        resend: "Отправить подтверждение повторно"
+    mailer:
+      confirmation_instructions:
+        welcome: "Добро пожаловать"
+        confirmation: "Вы можете подтвердить вашу почту по ссылке ниже:"
+        confirm_link: "Подтвердить почту"
+      email_changed:
+        hello: "Здравствуйте"
+        is_being_changed: "Сообщаем Вам, что Ваша почта будет изменена на"
+        has_been_changed: "Сообщаем Вам, что Ваша почта была успешно изменена на"
+      password_change:
+        hello: "Здравствуйте"
+        has_been_changed: "Сообщаем Вам, что Ваш пароль был успешно изменен."
+      reset_password_instructions:
+        hello: "Здравствуйте"
+        change_request: "Кто-то запросил ссылку на смену Вашего пароля. Если это Вы, можете сделать это по ссылке ниже."
+        change_link: "Сменить пароль"
+        ignore: "Если Вы не запрашивали смену пароля, просто проигнорируйте данное сообщение."
+        wont_change: "Ваш пароль не будет изменен если вы не перейдете по ссылке выше и не создадите новый."
+      unlock_instructions:
+        hello: "Здравствуйте"
+        acc_locked: "Ваш аккаунт был заблокирован за превышение неудачных попыток входа."
+        click_the_link: "Перейдите по ссылке ниже для разблокировки аккаунта"
+        unlock_link: "Разблокировать аккаунт"
+    password:
+      new:
+        forgot: "Забыли пароль?"
+        send: "Отправить инструкции"
+      edit:
+        change: "Смена пароля"
+        new_pass: "Новый пароль"
+        conf_pass: "Подтвердите новый пароль"
+        pass_btn: "Сменить пароль"
+    registrations:
+      new:
+        password: "Пароль"
+        chars: " символов минимум"
+        confirm_password: "Подтвердите пароль"
+        signup: "Регистрация"
+      edit:
+        title: "Редактирование"
+        confirmation: "Ожидает подтверждения почты: "
+        leave_blank: "(оставьте пустым если не хотите менять)"
+        current_pass: "(введите текущий пароль для сохранения изменений)"
+        update_btn: "Сохранить"
+        cancel: "Удалить профиль"
+        unhappy: "Уверены? "
+        back: "Назад"
+    sessions:
+      new:
+        login: "Вход"
+        password: "Пароль"
+        remember: "Не выходить"
+    shared:
+      links:
+        login: "Вход"
+        signup: "Регистрация"
+        pass: "Забыли пароль?"
+        confirm: "Не получили письмо с подтверждением?"
+        unlock: "Не получили письмо с разблокировкой учетной записи?"
+        signup_with: "Войти с помощью"
+    unlocks:
+      new:
+        resend: "Отправить инструкцию по разблокировке посторно"
+  users:
+    index:
+    show:
+      new_connection: "Новое соединение"
+      connections: "Ваши соединения:"

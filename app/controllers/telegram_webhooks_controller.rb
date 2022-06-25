@@ -46,7 +46,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   def save_issue(client, message, summary, description)
     issue = client.Issue.build
     description << ("\n\nСоздано @#{message['from']['username']} в \"#{message['chat']['title']}\"" \
-      ", [#{Time.at(message['date']).strftime('%R %d.%m.%y')}]")
+      ", [ #{I18n.l(Time.at(message['date']), format: :custom)} ]")
     [issue, issue.save(
       {
         'fields' => {

@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  scope '(:locale)', locale: /ru|en/ do 
+    root 'users#index'
+    
+    devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions'}
+    telegram_webhook TelegramWebhooksController
 
-  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions'}
-  telegram_webhook TelegramWebhooksController
-
-  resources :users do
-    resources :connections
+    resources :users do
+      resources :connections
+    end
   end
 end

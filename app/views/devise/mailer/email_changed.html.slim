@@ -1,14 +1,14 @@
 p
-  | Hello 
+  = t('.hello') 
   = @email
   | !
 - if @resource.try(:unconfirmed_email?)
   p
-    | We're contacting you to notify you that your email is being changed to 
+    = t('.is_being_changed')
     = @resource.unconfirmed_email
     | .
 - else
   p
-    | We're contacting you to notify you that your email has been changed to 
+    = t('.has_been_changed')
     = @resource.email
     | .

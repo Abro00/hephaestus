@@ -1,7 +1,11 @@
-| tg chat "
-b
-  = connection.chat.title
-| " --> project "
-b
-  = connection.project_key
-| "
+.connection
+  = t('.telegram')
+  |  "
+  b
+    = connection.chat.title
+  | " --> 
+  = t('.jira')
+  |  "
+  b
+    = connection.project_key
+  | "
