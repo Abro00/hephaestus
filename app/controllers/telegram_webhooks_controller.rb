@@ -1,7 +1,10 @@
 class TelegramWebhooksController < Telegram::Bot::UpdatesController
+  I18n.locale = 'bot'
+
   def my_chat_member(my_chat_member)
     if my_chat_member['new_chat_member']['status'] == 'member'
-      respond_with :message, text: 'Вечер в хату работяги'
+      respond_with :message, text: t('chat_ivite')
+
       Chat.create(id: my_chat_member['chat']['id'], title: my_chat_member['chat']['title'])
     end
     Chat.find(my_chat_member['chat']['id']).destroy if my_chat_member['new_chat_member']['status'] == 'left'
@@ -24,15 +27,19 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
     issue, saved = save_issue(client, message, summary, description)
     if saved
-      response = "Создана задача с номером [#{issue.key}](#{client.request_client.options[:site]}browse/#{issue.key})"
+      response = t('succ_issue', key: issue.key, site: client.request_client.options[:site])
       reply_with :message, text: response, parse_mode: 'Markdown'
     else
-      reply_with :message, text: 'Не удалось создать задачу'
+      reply_with :message, text: t('fail_issue')
     end
   end
 
   def start!(*)
-    reply_with :message, text: 'Hello'
+    reply_with :message, text: t('hello')
+  end
+
+  def help!(*)
+    respond_with :message, text: t('help')
   end
 
   private
@@ -45,8 +52,9 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def save_issue(client, message, summary, description)
     issue = client.Issue.build
-    description << ("\n\nСоздано @#{message['from']['username']} в \"#{message['chat']['title']}\"" \
-      ", [ #{I18n.l(Time.at(message['date']), format: :custom)} ]")
+    description << t('creation_info', creator: message['from']['username'],
+                                      chat:    message['chat']['title'],
+                                      time:    I18n.l(Time.at(message['date']), format: :custom))
     [issue, issue.save(
       {
         'fields' => {

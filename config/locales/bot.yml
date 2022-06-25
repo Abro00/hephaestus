@@ -1,0 +1,7 @@
+bot:
+  chat_ivite: "Вечер в хату работяги"
+  hello: "Ну привет"
+  help: "Тебе уже ничего не поможет"
+  succ_issue: "Создана задача с номером [%{key}](%{site}browse/%{key})"
+  fail_issue: "Не удалось создать задачу"
+  creation_info: "\n\nСоздано @%{creator} в \"%{chat}\", [ %{time} ]"
