@@ -21,7 +21,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       return
     end
 
-    response =  IssueCreator.call(message)
+    response = IssueCreator.call(message)
     reply_with :message, text: response, parse_mode: 'Markdown'
   end
 

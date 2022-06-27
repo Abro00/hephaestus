@@ -1,13 +1,12 @@
 class IssueCreator < ApplicationService
   def initialize(message)
+    super
     @message = message
   end
 
   def call
     connection = Connection.find_by(chat_id: @message.dig('chat', 'id'))
-    unless connection
-      return I18n.t('no_connection')
-    end
+    return I18n.t('no_connection') unless connection
 
     summary, description = parse_summary_and_description(@message['text'])
 
@@ -44,8 +43,8 @@ class IssueCreator < ApplicationService
     issue = client.Issue.build
     project_key = connection.project_key
     description << I18n.t('creation_info', creator: message.dig('from', 'username'),
-                                      chat:    message.dig('chat', 'title'),
-                                      time:    I18n.l(Time.at(message['date']), format: :custom))
+                                           chat:    message.dig('chat', 'title'),
+                                           time:    I18n.l(Time.at(message['date']), format: :custom))
     [issue, issue.save(
       {
         fields: {
