@@ -3,12 +3,12 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   # adding bot to a new group
   def my_chat_member(my_chat_member)
-    if my_chat_member['new_chat_member']['status'] == 'member'
+    if my_chat_member.dig('new_chat_member', 'status') == 'member'
       respond_with :message, text: t('chat_ivite')
 
-      Chat.create(id: my_chat_member['chat']['id'], title: my_chat_member['chat']['title'])
+      Chat.create(id: my_chat_member.dig('chat', 'id'), title: my_chat_member.dig('chat', 'title'))
     end
-    Chat.find(my_chat_member['chat']['id']).destroy if my_chat_member['new_chat_member']['status'] == 'left'
+    Chat.find(my_chat_member.dig('chat', 'id')).destroy if my_chat_member.dig('new_chat_member', 'status') == 'left'
   end
 
   # request to create issue
@@ -16,7 +16,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     return if message['text'].nil?
     return unless message['text'].start_with?("@#{Telegram.bot.username}")
 
-    if message['chat']['type'] == 'private'
+    if message.dig('chat', 'type') == 'private'
       respond_with :message, text: t('private_mention')
       return
     end

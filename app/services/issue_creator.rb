@@ -4,7 +4,7 @@ class IssueCreator < ApplicationService
   end
 
   def call
-    connection = Connection.find_by(chat_id: @message['chat']['id'])
+    connection = Connection.find_by(chat_id: @message.dig('chat', 'id'))
     unless connection
       return I18n.t('no_connection')
     end
@@ -43,8 +43,8 @@ class IssueCreator < ApplicationService
   def save_issue(client, message, summary, description, connection)
     issue = client.Issue.build
     project_key = connection.project_key
-    description << I18n.t('creation_info', creator: message['from']['username'],
-                                      chat:    message['chat']['title'],
+    description << I18n.t('creation_info', creator: message.dig('from', 'username'),
+                                      chat:    message.dig('chat', 'title'),
                                       time:    I18n.l(Time.at(message['date']), format: :custom))
     [issue, issue.save(
       {
