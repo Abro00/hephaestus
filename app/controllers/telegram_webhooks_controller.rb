@@ -21,23 +21,8 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       return
     end
 
-    connection = Connection.find_by(chat_id: message['chat']['id'])
-    unless connection
-      respond_with :message, text: t('no_connection')
-      return
-    end
-
-    summary, description = parse_summary_and_description(message['text'])
-
-    client = get_jira_client(connection)
-
-    issue, saved = save_issue(client, message, summary, description, connection)
-    if saved
-      response = t('succ_issue', key: issue.key, site: client.request_client.options[:site])
-      reply_with :message, text: response, parse_mode: 'Markdown'
-    else
-      reply_with :message, text: t('fail_issue')
-    end
+    response =  IssueCreator.call(message)
+    reply_with :message, text: response, parse_mode: 'Markdown'
   end
 
   def start!(*)
@@ -46,42 +31,5 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def help!(*)
     respond_with :message, text: t('help', botname: Telegram.bot.username), parse_mode: 'Markdown'
-  end
-
-  private
-
-  def get_jira_client(connection)
-    options = {
-      username:     connection.email,
-      password:     connection.api_token,
-      site:         connection.site,
-      context_path: '',
-      auth_type:    :basic
-    }
-    JIRA::Client.new(options)
-  end
-
-  def parse_summary_and_description(message)
-    description = message.partition("\n\n")[2]
-    summary = message.partition("\n\n")[0].partition(' ')[2]
-    [summary, description]
-  end
-
-  def save_issue(client, message, summary, description, connection)
-    issue = client.Issue.build
-    project_key = connection.project_key
-    description << t('creation_info', creator: message['from']['username'],
-                                      chat:    message['chat']['title'],
-                                      time:    I18n.l(Time.at(message['date']), format: :custom))
-    [issue, issue.save(
-      {
-        fields: {
-          summary:,
-          project:     { key: project_key },
-          description:,
-          issuetype:   { name: 'Task' }
-        }
-      }
-    )]
   end
 end
