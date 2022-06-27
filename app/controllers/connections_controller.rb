@@ -18,7 +18,8 @@ class ConnectionsController < ApplicationController
 
   def edit
     @connection = Connection.find(params[:id])
-    @chats_collection = Chat.left_joins(:connection).where(connection: { chat_id: nil }).or(Chat.where(connection: { chat_id: @connection.chat_id }))
+    @chats_collection = Chat.left_joins(:connection).where(connection: { chat_id: nil })
+                            .or(Chat.where(connection: { chat_id: @connection.chat_id }))
   end
 
   def update
