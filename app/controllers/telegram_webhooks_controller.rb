@@ -21,16 +21,17 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       return
     end
 
-    unless Connection.exists?(chat_id: message['chat']['id'])
+    connection = Connection.find_by(chat_id: message['chat']['id'])
+    unless connection
       respond_with :message, text: t('no_connection')
       return
     end
 
     summary, description = parse_summary_and_description(message['text'])
 
-    client = set_jira_client
+    client = set_jira_client(connection)
 
-    issue, saved = save_issue(client, message, summary, description)
+    issue, saved = save_issue(client, message, summary, description, connection)
     if saved
       response = t('succ_issue', key: issue.key, site: client.request_client.options[:site])
       reply_with :message, text: response, parse_mode: 'Markdown'
@@ -49,11 +50,11 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   private
 
-  def set_jira_client
+  def set_jira_client(connection)
     options = {
-      username:     Rails.application.credentials.dig(:jira, :username),
-      password:     Rails.application.credentials.dig(:jira, :api_token),
-      site:         Rails.application.credentials.dig(:jira, :site),
+      username:     connection.email,
+      password:     connection.api_token,
+      site:         connection.site,
       context_path: '',
       auth_type:    :basic
     }
@@ -66,18 +67,19 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     [summary, description]
   end
 
-  def save_issue(client, message, summary, description)
+  def save_issue(client, message, summary, description, connection)
     issue = client.Issue.build
+    project_key = connection.project_key
     description << t('creation_info', creator: message['from']['username'],
                                       chat:    message['chat']['title'],
                                       time:    I18n.l(Time.at(message['date']), format: :custom))
     [issue, issue.save(
       {
-        'fields' => {
-          'summary'     => summary,
-          'project'     => { 'key' => 'GEGE' },
-          'description' => description,
-          'issuetype'   => { 'name' => 'Task' }
+        fields: {
+          summary:,
+          project:     { key: project_key },
+          description:,
+          issuetype:   { name: 'Task' }
         }
       }
     )]
