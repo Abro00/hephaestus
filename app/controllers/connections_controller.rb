@@ -8,6 +8,7 @@ class ConnectionsController < ApplicationController
 
   def create
     @connection = @user.connections.new(connection_params)
+    @chats_collection = Chat.left_joins(:connection).where(connection: { chat_id: nil })
 
     if @connection.save
       redirect_to user_path(@user)
