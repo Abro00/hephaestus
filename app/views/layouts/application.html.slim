@@ -17,7 +17,7 @@ html
 
     - if user_signed_in?
       b
-        = current_user.email
+        = link_to current_user.email, user_path(current_user)
       = button_to t('.logout'), destroy_user_session_path, method: :delete
     - else
       div style='display:flex;'

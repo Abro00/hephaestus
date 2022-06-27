@@ -1,4 +1,10 @@
 .connection
+  = link_to 'X', user_connection_path(connection.user, connection),
+                  method: :delete,
+                  data: { turbo_method:'delete',turbo_confirm: 'Are you sure?' }
+  |  / 
+  = link_to 'Edit', edit_user_connection_path(connection.user, connection)
+  |   
   = t('.telegram')
   |  "
   b

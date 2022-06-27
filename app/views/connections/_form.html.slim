@@ -1,4 +1,4 @@
-= form_with(model: @connection, url: user_connections_path(@user)) do |f|
+= form_with(model: [@user, @connection]) do |f|
   .field
     = f.label :tg_token, t('.tg_token')
     br
@@ -7,12 +7,11 @@
   .field
     = f.label :chat_id, t('.tg_group')
     br
-    = f.text_field :chat_id
-  
-  .field
-    = f.label :project_key, t('.jira_project')
-    br
-    = f.text_field :project_key
+    = f.collection_select :chat_id,
+                          @chats_collection,
+                          :id,
+                          :title,
+                          prompt: ''
 
   .field
     = f.label :site, t('.jira_site')
@@ -28,5 +27,10 @@
     = f.label :api_token, t('.jira_token')
     br
     = f.text_field :api_token
+  
+  .field
+    = f.label :project_key, t('.jira_project')
+    br
+    = f.text_field :project_key
 
   = f.submit t('.connect')

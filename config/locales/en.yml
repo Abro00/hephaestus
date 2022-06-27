@@ -18,7 +18,7 @@ en:
       jira_site: "JIRA address"
       jira_email: "JIRA email"
       jira_token: "JIRA API token"
-      connect: "New connection"
+      connect: "Save"
     new:
       back: "Back"
       connection: "New connection"
