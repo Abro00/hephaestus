@@ -29,7 +29,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
     summary, description = parse_summary_and_description(message['text'])
 
-    client = set_jira_client(connection)
+    client = get_jira_client(connection)
 
     issue, saved = save_issue(client, message, summary, description, connection)
     if saved
@@ -50,7 +50,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   private
 
-  def set_jira_client(connection)
+  def get_jira_client(connection)
     options = {
       username:     connection.email,
       password:     connection.api_token,

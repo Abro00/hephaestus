@@ -1,9 +1,9 @@
 class ConnectionsController < ApplicationController
   before_action :find_user
-  
+
   def new
     @connection = @user.connections.new
-    @chats_collection = Chat.left_joins(:connection).where(connection: { chat_id: nil }).or(Chat.where(connection: { chat_id: @connection.chat_id }))
+    @chats_collection = Chat.left_joins(:connection).where(connection: { chat_id: nil })
   end
 
   def create
