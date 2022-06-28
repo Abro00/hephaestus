@@ -13,6 +13,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   # request to create issue
   def message(message)
+    change_title(message) unless message['new_chat_title'].nil?
     return if message['text'].nil?
     return unless message['text'].start_with?("@#{Telegram.bot.username}")
 
@@ -31,5 +32,12 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def help!(*)
     respond_with :message, text: t('help', botname: Telegram.bot.username), parse_mode: 'Markdown'
+  end
+
+  private
+
+  def change_title(message)
+    chat = Chat.find(message.dig('chat', 'id'))
+    chat.update(title: message['new_chat_title'])
   end
 end
