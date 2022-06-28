@@ -41,10 +41,12 @@ Layout/SpaceAroundBlockParameters:
 Layout/SpaceBeforeBlockBraces:
   Enabled: false
 
-
 Layout/LineLength:
   Max: 120
   IgnoredPatterns: ['(\A|\s)#']
+
+Lint/MissingSuper:
+  Enabled: false
 
 Naming/VariableNumber:
   EnforcedStyle: snake_case

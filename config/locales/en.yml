@@ -11,6 +11,7 @@ en:
     connection:
       telegram: "TG chat"
       jira: "JIRA project"
+      confirm: "Are you sure?"
     form:
       tg_token: "Telegram bot token"
       tg_group: "Telegram group chat"
@@ -58,6 +59,7 @@ en:
         new_pass: "New password"
         conf_pass: "Confirm new password"
         pass_btn: "Change my password"
+        confirm: "Are you sure?"
     registrations:
       new:
         password: "Password"

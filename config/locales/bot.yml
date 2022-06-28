@@ -2,7 +2,7 @@ bot:
   time:
     formats:
       custom: "%R %d.%m.%Y"
-  chat_ivite: "Вечер в хату работяги"
+  chat_invite: "Вечер в хату работяги"
   hello: "Ну привет"
   help: "Чтобы создать задачу напиши:`\n@%{botname} <заголовок_задачи>\n\n<описание_задачи>`"
   succ_issue: "Создана задача с номером [%{key}](%{site}browse/%{key})"

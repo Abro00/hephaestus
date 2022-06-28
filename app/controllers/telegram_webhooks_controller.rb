@@ -4,7 +4,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   # adding bot to a new group
   def my_chat_member(my_chat_member)
     if my_chat_member.dig('new_chat_member', 'status') == 'member'
-      respond_with :message, text: t('chat_ivite')
+      respond_with :message, text: t('chat_invite')
 
       Chat.create(id: my_chat_member.dig('chat', 'id'), title: my_chat_member.dig('chat', 'title'))
     end
@@ -22,7 +22,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     end
 
     response = IssueCreator.call(message)
-    reply_with :message, text: response, parse_mode: 'Markdown'
+    reply_with :message, text: response[:message], parse_mode: 'Markdown'
   end
 
   def start!(*)

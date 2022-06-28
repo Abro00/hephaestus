@@ -11,6 +11,7 @@ ru:
     connection:
       telegram: "Имя чата"
       jira: "Проект"
+      confirm: "Уверены?"
     form:
       tg_token: "Токен телеграм бота"
       tg_group: "Чат проекта"
@@ -58,6 +59,7 @@ ru:
         new_pass: "Новый пароль"
         conf_pass: "Подтвердите новый пароль"
         pass_btn: "Сменить пароль"
+        confirm: "Уверены?"
     registrations:
       new:
         password: "Пароль"
