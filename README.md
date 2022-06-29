@@ -1,24 +1,48 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<какое-нибудь описание для чего этот проект сделан>
 
-Things you may want to cover:
+## Запуск сервиса
 
-* Ruby version
+Основные шаги для запуска сервиса на Вашем сервере:
+1. Создать Telegram бота при помощи @BotFather
+2. Указать имя и токен бота в __credentials.yml.enc__ в соответствии с примером __credentials.yml.example__ с помощью команды
+```
+EDITOR="nano" rails credentials:edit
+```
+Вместо __nano__ можно использовать другой редактор документов.
+3. Запустить билд
+```
+sudo docker compose build
+```
+а затем развернуть контейнер
+```
+sudo docker compose up
+```
 
-* System dependencies
+## Соединение бота с проектом в JIRA
 
-* Configuration
+1. Зарегистрироваться/авторизоваться в личном кабинете.
 
-* Database creation
+Если Вы впервые запускаете проект, необходимо зарегистрировать нового пользователя в JIRA, от имени которого бот будет создавать задачи
+или назначить для этого уже существующий профиль. Не забудьте выдать необходимые права для доступа к проектам и создания задач.
 
-* Database initialization
+Для доступа бота у проекту потребуется почта, к которой привязан аккаунт JIRA, а также токен, получить который можно следуя [инструкции](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/)
 
-* How to run the test suite
+2. Добавить бота в груповой чат проекта
+3. Создать новое соединение в личном кабинете, заполнить все поля.
+Если все данные введены верно, будет создано новое соединение и отображено соответствующее собщение об этом.
 
-* Services (job queues, cache servers, search engines, etc.)
+## Создание задачи с помощью бота
+После добавления бота в чат проекта и установки соединения, создать задачу в проекте можно отправив сообщение по шаблону
+```
+@<bot_username> <issue_summary>
 
-* Deployment instructions
+<issue_description>
+```
+При успешном создании бот вернет ссылку на новую задачу.
 
-* ...
+Этот шаблон доступен также по команде __/help@<bot_username>__
+
+___
+Лицензия ЭМАЙТИ копирайт
