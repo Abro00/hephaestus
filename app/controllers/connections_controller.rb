@@ -46,9 +46,7 @@ class ConnectionsController < ApplicationController
 
   def find_user
     @user = User.find(params[:user_id])
-    unless @user == current_user
-      redirect_to user_path(current_user)
-    end
+    redirect_to user_path(current_user) unless @user == current_user
   end
 
   def connection_params
