@@ -1,7 +1,7 @@
 class ConnectionsController < ApplicationController
   before_action :find_user
   before_action :set_connection, only: %i[edit update destroy]
-  before_action :set_chats_collection, only: %i[new create edit]
+  before_action :set_chats_collection, only: %i[new create edit update]
 
   def new
     @connection = @user.connections.new
@@ -9,8 +9,10 @@ class ConnectionsController < ApplicationController
 
   def create
     @connection = @user.connections.new(connection_params)
+    @connection.tg_token = Telegram.bot.token
 
     if @connection.save
+      flash[:notice] = 'Connection successfully saved'
       redirect_to user_path(@user)
     else
       render :new, status: :unprocessable_entity
@@ -20,8 +22,6 @@ class ConnectionsController < ApplicationController
   def edit; end
 
   def update
-    # проверка соединения
-
     if @connection.update(connection_params)
       redirect_to @user
     else
@@ -36,23 +36,6 @@ class ConnectionsController < ApplicationController
 
   private
 
-  def check_connection(connection)
-    options = {
-      username:     connection.email,
-      password:     connection.api_token,
-      site:         connection.site,
-      context_path: '',
-      auth_type:    :basic
-    }
-    client = JIRA::Client.new(options)
-
-    begin client.Project.find(connection.project_key)
-          true
-    rescue StandardError
-      false
-    end
-  end
-
   def set_chats_collection
     @chats_collection = Chat.left_joins(:connection).where(connection: { chat_id: [nil, @connection&.chat_id].uniq })
   end
@@ -66,6 +49,6 @@ class ConnectionsController < ApplicationController
   end
 
   def connection_params
-    params.require(:connection).permit(:chat_id, :tg_token, :site, :email, :api_token, :project_key)
+    params.require(:connection).permit(:chat_id, :site, :email, :api_token, :project_key)
   end
 end

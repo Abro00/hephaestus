@@ -9,11 +9,16 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   body
+    p.notice style="color: green"
+      = notice
+    p.alert
+      = alert
+
     div
       - if I18n.locale == :ru
-        = link_to "eng", { :locale=>nil }
+        = link_to "eng", { :locale=>'en' }
       - else
-        = link_to "rus", { :locale=>'ru' }
+        = link_to "rus", { :locale=>nil }
 
     - if user_signed_in?
       b
@@ -23,9 +28,4 @@ html
       div style='display:flex;'
         = button_to t('.login'), new_user_session_path, method: :get
         = button_to t('.sign_up'), new_user_registration_path, method: :get
-
-    p.notice
-      = notice
-    p.alert
-      = alert
     = yield

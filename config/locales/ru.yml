@@ -2,6 +2,11 @@ ru:
   time:
     formats:
       custom: "%R %d.%m.%Y"
+  models:
+    connection:
+      connection_error: "Не удалось установить соединение с проектом. Проверьте правильность введенных данных."
+      unknown_error: "Неизвестая ошибка"
+      bot_connection_error: "Не удалось установить соединение с Telegram ботом. Проверьте правильность установленного токена."
   layouts:
     application:
       logout: "Выход"
