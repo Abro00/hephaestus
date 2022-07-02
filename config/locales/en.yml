@@ -106,3 +106,6 @@ en:
     show:
       new_connection: "New chat"
       connections: "Connected chats:"
+      start_bot: "Before adding new chat here, invite "
+      bot: "bot"
+      end_bot: " to your Telegram group chat."

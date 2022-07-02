@@ -21,9 +21,10 @@
         = f.password_field :password_confirmation, class: "form-control", type: "password", placeholder: "password"
         = f.label :password_confirmation, t('.confirm_password')
       
+      = render "devise/shared/error_messages", resource: resource
+      
       .actions
         = f.submit t('.signup'), class: "w-100 btn btn-lg btn-primary mt-4", type: "submit"
-  = render "devise/shared/error_messages", resource: resource
 
   .mt-4
     = render "devise/shared/links"

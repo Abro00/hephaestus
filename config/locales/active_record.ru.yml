@@ -1,0 +1,23 @@
+ru:
+  activerecord:
+    attributes:
+      user:
+        current_password: "Текущий пароль"
+        email: "Email"
+        password: "Пароль"
+        password_confirmation: "Пароли"
+        remember_me: "Запомнить меня"
+    models:
+      user: "Пользователь"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: " не должен быть пустым"
+              taken: " уже занят"
+            password:
+              blank: " не может быть пустым"
+              too_short: " слишком короткий"
+            password_confirmation:
+              confirmation: " не совпадают"
