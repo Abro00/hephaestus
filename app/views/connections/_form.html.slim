@@ -1,37 +1,33 @@
-- if @connection.errors.include?(:base)
-  ul
-    - @connection.errors.where(:base).each do |e|
-      li style="color: red"
-        = e.full_message
-
 = form_with(model: [@user, @connection]) do |f|
   .field
     = f.label :chat_id, t('.tg_group')
-    br
     = f.collection_select :chat_id,
                           @chats_collection,
                           :id,
                           :title,
-                          prompt: ''
+                          { prompt: t('.select_chat') },
+                          class: 'form-select'
 
-  .field
+  .field.mt-3
     = f.label :site, t('.jira_site')
-    br
-    = f.text_field :site
+    = f.text_field :site, class: "form-control", placeholder: 'https://your-domain.atlassian.net/'
   
-  .field
+  .field.mt-3
     = f.label :email, t('.jira_email')
-    br
-    = f.email_field :email
+    = f.email_field :email, class: "form-control", placeholder: 'johndoe@example.com'
   
-  .field
+  .field.mt-3
     = f.label :api_token, t('.jira_token')
-    br
-    = f.text_field :api_token
+    = f.text_field :api_token, class: "form-control"
   
-  .field
+  .field.mt-3
     = f.label :project_key, t('.jira_project')
-    br
-    = f.text_field :project_key
+    = f.text_field :project_key, class: "form-control", placeholder: 'PROJ'
+  
+  = f.submit t('.connect'), class: "w-50 btn btn-lg btn-success mx-auto mt-3", type: "submit"
 
-  = f.submit t('.connect')
+- if @connection.errors.include?(:base)
+  - @connection.errors.where(:base).each do |e|
+    p
+      | ❌
+      =< e.full_message

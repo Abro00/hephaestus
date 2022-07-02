@@ -4,9 +4,13 @@ ru:
       custom: "%R %d.%m.%Y"
   models:
     connection:
-      connection_error: "Не удалось установить соединение с проектом. Проверьте правильность введенных данных."
-      unknown_error: "Неизвестая ошибка"
-      bot_connection_error: "Не удалось установить соединение с Telegram ботом. Проверьте правильность установленного токена."
+      connection_error: | 
+        Не удалось установить соединение с проектом.
+        Проверьте правильность введенных данных.
+      unknown_error: "Не удалось установить соединение"
+      bot_connection_error: | 
+        Не удалось установить соединение с Telegram ботом.
+        Проверьте правильность установленного токена.
   layouts:
     application:
       logout: "Выход"
@@ -14,12 +18,14 @@ ru:
       sign_up: "Регистрация"
   connections:
     connection:
-      telegram: "Имя чата"
+      edit: "Ред."
+      telegram: "Чат"
       jira: "Проект"
       confirm: "Уверены?"
     form:
       tg_token: "Токен телеграм бота"
       tg_group: "Чат проекта"
+      select_chat: "Выберите чат..."
       jira_project: "Ключ проекта JIRA"
       jira_site: "Домен JIRA"
       jira_email: "email бота в JIRA"
@@ -27,7 +33,10 @@ ru:
       connect: "Сохранить"
     new:
       back: "Назад"
-      connection: "Новая связь"
+      connection: "Новый чат"
+      success: "✔️ Чат успешно сохранен. Соединение установлено"
+    edit:
+      connection: "Редактировать чат"
   devise:
     confirmations:
       new:
@@ -99,5 +108,5 @@ ru:
   users:
     index:
     show:
-      new_connection: "Новое соединение"
-      connections: "Ваши соединения:"
+      new_connection: "Новый чат"
+      connections: "Ваши чаты:"

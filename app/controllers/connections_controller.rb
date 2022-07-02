@@ -12,7 +12,7 @@ class ConnectionsController < ApplicationController
     @connection.tg_token = Telegram.bot.token
 
     if @connection.save
-      flash[:notice] = 'Connection successfully saved'
+      flash[:notice] = t('connections.new.success')
       redirect_to user_path(@user)
     else
       render :new, status: :unprocessable_entity
@@ -23,6 +23,7 @@ class ConnectionsController < ApplicationController
 
   def update
     if @connection.update(connection_params)
+      flash[:notice] = t('connections.new.success')
       redirect_to @user
     else
       render :edit, status: :unprocessable_entity

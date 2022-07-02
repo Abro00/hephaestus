@@ -1,8 +1,10 @@
 h3
-  = @user.email
-
-= button_to t('.new_connection'), new_user_connection_path(@user), method: :get
-
-h3
   = t('.connections')
-= render @user.connections
+.mx-auto.w-50
+  = button_to t('.new_connection'), new_user_connection_path(@user),
+                                    method: :get,
+                                    class: "btn btn-outline-success",
+                                    style: "min-width: 200px; opacity: 0.7"
+
+.mt-3
+  = render @user.connections
