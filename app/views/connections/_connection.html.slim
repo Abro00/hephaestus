@@ -9,12 +9,15 @@
       = link_to t('.edit'), edit_user_connection_path(connection.user, connection),
                         class: "btn btn-warning",
                         style: "opacity: 0.9"
-  .col-md-8.themed-grid-col.my-auto
+  .col-md-4.themed-grid-col.my-auto.text-center
     = t('.telegram')
     |  "
     b
       = connection.chat.title
-    | " —> 
+    | "
+  .col-md-2.themed-grid-col.my-auto
+    | —> 
+  .col-md-4.themed-grid-col.my-auto
     = t('.jira')
     |  "
     b

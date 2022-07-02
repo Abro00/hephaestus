@@ -3,7 +3,6 @@
     = t('.signup')
   .form-signin.w-100.m-auto
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = render "devise/shared/error_messages", resource: resource
       .field.form-floating
         = f.email_field :email, class: "form-control", type: "email", placeholder: "name@example.com", autocomplete: "email"
         = f.label :email
@@ -24,3 +23,7 @@
       
       .actions
         = f.submit t('.signup'), class: "w-100 btn btn-lg btn-primary mt-4", type: "submit"
+  = render "devise/shared/error_messages", resource: resource
+
+  .mt-4
+    = render "devise/shared/links"

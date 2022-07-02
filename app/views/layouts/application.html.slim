@@ -9,22 +9,18 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
   body
-    div.navbar.bg-dark
-      div
-        - if I18n.locale == :ru
-          = link_to "eng", { :locale=>'en' }, class: "link-warning ms-3"
-        - else
-          = link_to "rus", { :locale=>nil }, class: "link-warning ms-3"
+    - if user_signed_in?
+      div.navbar.bg-dark
+        div
+          - if I18n.locale == :ru
+            = link_to "eng", { :locale=>'en' }, class: "link-warning ms-3"
+          - else
+            = link_to "rus", { :locale=>nil }, class: "link-warning ms-3"
 
-      - if user_signed_in?
         div.btn-group role="group"
-          b
+          b.my-auto.me-3
             = link_to current_user.email, user_path(current_user), class: "link-warning ms-3 align-middle me-2"
           = button_to t('.logout'), destroy_user_session_path, method: :delete, class: "btn btn-outline-danger rounded-pill me-2"
-      - else
-        div.btn-group role="group"
-          = link_to t('.login'), new_user_session_path, method: :get, class: "btn btn-outline-danger rounded-pill me-2"
-          = link_to t('.sign_up'), new_user_registration_path, method: :get, class: "btn btn-outline-warning rounded-pill me-2"
 
     p.notice style="color: green; margin-left: 10px"
       = notice

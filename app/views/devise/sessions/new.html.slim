@@ -18,3 +18,8 @@
       
       .actions
         = f.submit t('.login'), class: "w-100 btn btn-lg btn-primary", type: "submit"
+
+      = render "devise/shared/error_messages"
+
+  .mt-4
+    = render "devise/shared/links"

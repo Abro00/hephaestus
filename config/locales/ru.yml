@@ -28,7 +28,7 @@ ru:
       select_chat: "Выберите чат..."
       jira_project: "Ключ проекта JIRA"
       jira_site: "Домен JIRA"
-      jira_email: "email бота в JIRA"
+      jira_email: "Email бота в JIRA"
       jira_token: "JIRA API токен"
       connect: "Сохранить"
     new:
