@@ -9,7 +9,9 @@ h3
 - if @user.connections.empty?
   h4.text-center.mt-5
     = t('.start_bot')
-    = link_to '@' + Telegram.bot.username, 'https://t.me/' + Telegram.bot.username, target: "_blank"
+    = link_to '@' + Telegram.bot.username, 'https://t.me/' + Telegram.bot.username,
+                                            target: "_blank",
+                                            class: "link-danger text-decoration-none"
     = t('.end_bot')
 
 .mt-3

@@ -5,7 +5,7 @@ en:
   models:
     connection:
       connection_error: "Can't establish connection to the project."
-      unknown_error: "Can't establish connection"
+      unknown_error: "Can't connect to JIRA"
       bot_connection_error: "Can't connect to the Telegram bot."
   layouts:
     application:
@@ -60,7 +60,7 @@ en:
         acc_locked: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
         click_the_link: "Click the link below to unlock your account"
         unlock_link: "Unlock my account"
-    password:
+    passwords:
       new:
         forgot: "Forgot your password?"
         send: "Send me reset password instructions"
