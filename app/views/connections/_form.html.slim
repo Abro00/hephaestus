@@ -1,9 +1,10 @@
+- if @connection.errors.include?(:base)
+  ul
+    - @connection.errors.where(:base).each do |e|
+      li style="color: red"
+        = e.full_message
+
 = form_with(model: [@user, @connection]) do |f|
-  .field
-    = f.label :tg_token, t('.tg_token')
-    br
-    = f.text_field :tg_token, autofocus: true
-  
   .field
     = f.label :chat_id, t('.tg_group')
     br

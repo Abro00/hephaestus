@@ -12,7 +12,7 @@ module Gefest
     config.load_defaults 7.0
 
     I18n.available_locales = [:en, :ru, :bot]
-    I18n.default_locale = :en
+    I18n.default_locale = :ru
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

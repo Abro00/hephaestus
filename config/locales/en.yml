@@ -2,6 +2,11 @@ en:
   time:
     formats:
       custom: "%R %d.%m.%Y"
+  models:
+    connection:
+      connection_error: "Can't establish connection to the project. Please check if data is correct."
+      unknown_error: "Unknown error"
+      bot_connection_error: "Can't connect to the Telegram bot. Check if token is correct."
   layouts:
     application:
       logout: "Logout"

@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions'}
     telegram_webhook TelegramWebhooksController
 
-    resources :users do
-      resources :connections
+    resources :users, only: %i[show] do
+      resources :connections, except: %i[index show]
     end
   end
 end
