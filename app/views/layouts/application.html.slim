@@ -8,10 +8,13 @@ html
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
+
+    = favicon_link_tag asset_path('favicon.ico')
   body
     - if user_signed_in?
       div.navbar.bg-dark
         div
+          = image_tag("logos/logo.png", width: "50px", class: "ms-3")
           - if I18n.locale == :ru
             = link_to "eng", { :locale=>'en' }, class: "link-warning ms-3"
           - else

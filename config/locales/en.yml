@@ -30,7 +30,7 @@ en:
     new:
       back: "Back"
       connection: "New chat"
-      success: "✔️ Chat successfully saved. Connection established"
+      success: "✓ Chat successfully saved. Connection established"
     edit:
       connection: "Edit chat"
   devise:
