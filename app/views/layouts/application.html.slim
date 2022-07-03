@@ -16,9 +16,9 @@ html
         div
           = image_tag("logos/logo.png", width: "50px", class: "ms-3")
           - if I18n.locale == :ru
-            = link_to "eng", { :locale=>'en' }, class: "link-warning ms-3"
+            = link_to "🇺🇸", { :locale=>'en' }, class: "ms-3 text-decoration-none align-bottom"
           - else
-            = link_to "rus", { :locale=>nil }, class: "link-warning ms-3"
+            = link_to "🇷🇺", { :locale=>nil }, class: "ms-3 text-decoration-none align-bottom"
 
         div.btn-group role="group"
           b.my-auto.me-3
