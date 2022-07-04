@@ -1,0 +1,8 @@
+p
+  = t('.welcome') 
+  = @email
+  | !
+p
+  = t('.confirmation')
+p
+  = link_to t('.confirm_link'), confirmation_url(@resource, confirmation_token: @token)

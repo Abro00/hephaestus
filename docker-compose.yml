@@ -1,0 +1,25 @@
+version: '3.8'
+
+x-env:
+  &default-env
+  environment:
+    - SECRET_KEY_BASE=qweqweqwe
+
+services:
+  db:
+    image: 'postgres:14-alpine'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    <<: *default-env
+
+volumes:
+  postgres:

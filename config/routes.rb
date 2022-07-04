@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  scope '(:locale)', locale: /ru|en/ do 
+    root 'users#index'
+    
+    devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions'}
+    telegram_webhook TelegramWebhooksController
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+    resources :users, only: %i[show] do
+      resources :connections, except: %i[index show]
+    end
+  end
 end

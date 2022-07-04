@@ -1,0 +1,14 @@
+p
+  = t('.hello') 
+  = @email
+  | !
+- if @resource.try(:unconfirmed_email?)
+  p
+    = t('.is_being_changed')
+    = @resource.unconfirmed_email
+    | .
+- else
+  p
+    = t('.has_been_changed')
+    = @resource.email
+    | .

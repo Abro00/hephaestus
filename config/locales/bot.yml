@@ -1,0 +1,12 @@
+bot:
+  time:
+    formats:
+      custom: "%R %d.%m.%Y"
+  chat_invite: "Вечер в хату работяги"
+  hello: "Ну привет"
+  help: "Чтобы создать задачу напиши:`\n@%{botname} <заголовок_задачи>\n\n<описание_задачи>`"
+  succ_issue: "Создана задача с номером [%{key}](%{site}browse/%{key})"
+  fail_issue: "Не удалось создать задачу"
+  creation_info: "\n\nСоздано @%{creator} в \"%{chat}\", [ %{time} ]"
+  private_mention: "И че мне сделать? В чат проекта меня добавь умник и туда пиши"
+  no_connection: "Этот чат не подключен к проету"
