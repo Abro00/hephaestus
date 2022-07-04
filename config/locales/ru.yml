@@ -4,9 +4,9 @@ ru:
       custom: "%R %d.%m.%Y"
   models:
     connection:
-      connection_error: "Не удалось установить соединение с проектом. Проверьте правильность введенных данных."
-      unknown_error: "Неизвестая ошибка"
-      bot_connection_error: "Не удалось установить соединение с Telegram ботом. Проверьте правильность установленного токена."
+      connection_error: "Не удалось подключиться к проекту."
+      unknown_error: "Не удалось подключиться к JIRA."
+      bot_connection_error: "Не удалось установить соединение с Telegram ботом."
   layouts:
     application:
       logout: "Выход"
@@ -14,20 +14,25 @@ ru:
       sign_up: "Регистрация"
   connections:
     connection:
-      telegram: "Имя чата"
+      edit: "Ред."
+      telegram: "Чат"
       jira: "Проект"
       confirm: "Уверены?"
     form:
       tg_token: "Токен телеграм бота"
       tg_group: "Чат проекта"
+      select_chat: "Выберите чат..."
       jira_project: "Ключ проекта JIRA"
       jira_site: "Домен JIRA"
-      jira_email: "email бота в JIRA"
+      jira_email: "Email бота в JIRA"
       jira_token: "JIRA API токен"
       connect: "Сохранить"
     new:
       back: "Назад"
-      connection: "Новая связь"
+      connection: "Новый чат"
+      success: "✓ Чат успешно сохранен. Соединение установлено"
+    edit:
+      connection: "Редактировать чат"
   devise:
     confirmations:
       new:
@@ -55,7 +60,7 @@ ru:
         acc_locked: "Ваш аккаунт был заблокирован за превышение неудачных попыток входа."
         click_the_link: "Перейдите по ссылке ниже для разблокировки аккаунта"
         unlock_link: "Разблокировать аккаунт"
-    password:
+    passwords:
       new:
         forgot: "Забыли пароль?"
         send: "Отправить инструкции"
@@ -99,5 +104,7 @@ ru:
   users:
     index:
     show:
-      new_connection: "Новое соединение"
-      connections: "Ваши соединения:"
+      new_connection: "Новый чат"
+      connections: "Ваши чаты:"
+      start_bot: "Перед добавлением нового чата к проекту, пригласите "
+      end_bot: " в Ваш групповой чат в Телеграм."

@@ -1,6 +1,8 @@
 br
-= link_to t('.back'), user_path(@user)
-h2
-  = t('.connection') 
+= link_to t('connections.new.back'), user_path(@user),
+                                     class: "btn btn-danger"
 
-= render 'form', user: @user
+.text-center.m-auto style="max-width: 500px"
+  h2
+    = t('.connection') 
+  = render 'form', user: @user

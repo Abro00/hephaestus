@@ -1,11 +1,14 @@
-h2
-  = t('.forgot')
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit t('.send')
-= render "devise/shared/links"
+.text-center.m-auto style="max-width: 400px"
+  .card.p-4 style="border-radius: 25px;"
+    h2.mt-3
+      = t('.forgot')
+    .form-signin.w-100.m-auto
+      = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .field.form-floating.mt-3
+          = f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email", placeholder: "email"
+          = f.label :email
+        .actions
+          = f.submit t('.send'), class: "w-100 btn btn-lg btn-primary mt-3", type: "submit"
+    .mt-4
+      = render "devise/shared/links"

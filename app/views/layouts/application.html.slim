@@ -8,24 +8,26 @@ html
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
+
+    = favicon_link_tag asset_path('favicon.ico')
   body
-    p.notice style="color: green"
+    - if user_signed_in?
+      div.navbar.bg-dark
+        div
+          = image_tag("logos/logo.png", width: "50px", class: "ms-3")
+          - if I18n.locale == :ru
+            = link_to "🇺🇸", { :locale=>'en' }, class: "ms-3 text-decoration-none align-bottom"
+          - else
+            = link_to "🇷🇺", { :locale=>nil }, class: "ms-3 text-decoration-none align-bottom"
+
+        div.btn-group role="group"
+          b.my-auto.me-3
+            = link_to current_user.email, user_path(current_user), class: "link-warning ms-3 align-middle me-2"
+          = button_to t('.logout'), destroy_user_session_path, method: :delete, class: "btn btn-outline-danger rounded-pill me-2"
+
+    p.notice style="color: green; margin-left: 10px"
       = notice
     p.alert
       = alert
-
-    div
-      - if I18n.locale == :ru
-        = link_to "eng", { :locale=>'en' }
-      - else
-        = link_to "rus", { :locale=>nil }
-
-    - if user_signed_in?
-      b
-        = link_to current_user.email, user_path(current_user)
-      = button_to t('.logout'), destroy_user_session_path, method: :delete
-    - else
-      div style='display:flex;'
-        = button_to t('.login'), new_user_session_path, method: :get
-        = button_to t('.sign_up'), new_user_registration_path, method: :get
-    = yield
+    .container
+      = yield

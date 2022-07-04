@@ -4,9 +4,9 @@ en:
       custom: "%R %d.%m.%Y"
   models:
     connection:
-      connection_error: "Can't establish connection to the project. Please check if data is correct."
-      unknown_error: "Unknown error"
-      bot_connection_error: "Can't connect to the Telegram bot. Check if token is correct."
+      connection_error: "Can't establish connection to the project."
+      unknown_error: "Can't connect to JIRA"
+      bot_connection_error: "Can't connect to the Telegram bot."
   layouts:
     application:
       logout: "Logout"
@@ -14,12 +14,14 @@ en:
       sign_up: "Sign up"
   connections:
     connection:
+      edit: "Edit"
       telegram: "TG chat"
       jira: "JIRA project"
       confirm: "Are you sure?"
     form:
       tg_token: "Telegram bot token"
       tg_group: "Telegram group chat"
+      select_chat: "Select chat..."
       jira_project: "JIRA project key"
       jira_site: "JIRA address"
       jira_email: "JIRA email"
@@ -27,7 +29,10 @@ en:
       connect: "Save"
     new:
       back: "Back"
-      connection: "New connection"
+      connection: "New chat"
+      success: "✓ Chat successfully saved. Connection established"
+    edit:
+      connection: "Edit chat"
   devise:
     confirmations:
       new:
@@ -55,7 +60,7 @@ en:
         acc_locked: "Your account has been locked due to an excessive number of unsuccessful sign in attempts."
         click_the_link: "Click the link below to unlock your account"
         unlock_link: "Unlock my account"
-    password:
+    passwords:
       new:
         forgot: "Forgot your password?"
         send: "Send me reset password instructions"
@@ -99,5 +104,8 @@ en:
   users:
     index:
     show:
-      new_connection: "New connection"
-      connections: "Connections:"
+      new_connection: "New chat"
+      connections: "Connected chats:"
+      start_bot: "Before adding new chat here, invite "
+      bot: "bot"
+      end_bot: " to your Telegram group chat."

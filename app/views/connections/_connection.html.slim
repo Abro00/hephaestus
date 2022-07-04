@@ -1,17 +1,25 @@
-.connection
-  = link_to 'X', user_connection_path(connection.user, connection),
-                  method: :delete,
-                  data: { turbo_method:'delete',turbo_confirm: t('.confirm') }
-  |  / 
-  = link_to 'Edit', edit_user_connection_path(connection.user, connection)
-  |   
-  = t('.telegram')
-  |  "
-  b
-    = connection.chat.title
-  | " --> 
-  = t('.jira')
-  |  "
-  b
-    = connection.project_key
-  | "
+.connection.row.mb-3
+  .col-md-2.themed-grid-col
+    .btn-group role="group"
+      = link_to '🗙', user_connection_path(connection.user, connection),
+                      method: :delete,
+                      data: { turbo_method:'delete',turbo_confirm: t('.confirm') },
+                      class: "btn btn-danger",
+                      style: "opacity: 0.9"
+      = link_to t('.edit'), edit_user_connection_path(connection.user, connection),
+                        class: "btn btn-warning",
+                        style: "opacity: 0.9"
+  .col-md-4.themed-grid-col.my-auto.text-center
+    = t('.telegram')
+    |  "
+    b
+      = connection.chat.title
+    | "
+  .col-md-2.themed-grid-col.my-auto
+    | —> 
+  .col-md-4.themed-grid-col.my-auto
+    = t('.jira')
+    |  "
+    b
+      = connection.project_key
+    | "

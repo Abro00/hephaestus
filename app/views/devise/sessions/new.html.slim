@@ -1,18 +1,26 @@
-h2
-  = t('.login')
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password, t('.password')
-    br
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me, t('.remember')
-  .actions
-    = f.submit t('.login')
-= render "devise/shared/links"
+.text-center.m-auto style="max-width: 400px"
+  .card.p-4 style="border-radius: 25px;"
+    h2
+      = t('.login')
+    .form-signin.w-100.m-auto
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field.form-floating
+          = f.email_field :email, class: "form-control", type: "email", placeholder: "name@example.com", autocomplete: "email"
+          = f.label :email
+        
+        .field.form-floating.mt-3
+          = f.password_field :password, class: "form-control", type: "password", placeholder: "Password"
+          = f.label :password, t('.password')
+        
+        - if devise_mapping.rememberable?
+          .field.checkbox.mb-3.mt-2
+            = f.check_box :remember_me, type: "checkbox"
+            =< f.label :remember_me, t('.remember')
+        
+        .actions
+          = f.submit t('.login'), class: "w-100 btn btn-lg btn-primary", type: "submit"
+
+        = render "devise/shared/error_messages"
+
+    .mt-4
+      = render "devise/shared/links"
