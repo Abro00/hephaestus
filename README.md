@@ -1,4 +1,5 @@
 # Бот Гефест
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://gitlab.edu.rnds.pro/nambrosimov/hephaestus/-/blob/main/LICENSE)
 
 В среднем на создание задачи в JIRA, фиксацию в чате информации о создании задачи тратит 5 минут. Таких задач в проекте может быть довольно много. При этом после обсуждения задачи в чате во время создания в JIRA теряется контекст: в рамках какого обсуждения родилась задача.
 
@@ -54,8 +55,9 @@ git clone https://github.com/Abro00/hephaestus-bot
 cd hephaestus-bot
 ```
 2. Создайте Телеграм бота, написав [@BotFather](https://t.me/BotFather)
-3. Указажите имя и токен бота в __credentials.yml.enc__ (подобнее в разделе __Начальная конфигурация__).
-4. Запустите контейнер
+3. Указажите имя и токен бота в __credentials.yml.enc__ (подобнее в разделе __Начальная конфигурация__)
+4. Если у вас имеется свой __production key base__ укажите его в соответствующей переменной окружения в __docker-compose.yml__
+5. Запустите контейнер
 ```bash
 docker-compose up -d --build
 ```
